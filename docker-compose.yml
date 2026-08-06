@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: flashticket_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: flashticket_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: flashticket_redis
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: .
+    container_name: flashticket_backend
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - DATABASE_URL=postgresql://postgres:password123@postgres:5432/flashticket_db?schema=public
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  pgdata:
