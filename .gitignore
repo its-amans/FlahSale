@@ -6,8 +6,6 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Environment and Secret Files
-.env
-.env.*
 !.env.example
 
 # Build and Output Directories
@@ -21,7 +19,6 @@ build/
 
 # IDEs and Editors (VS Code, JetBrains, Windsurf)
 .idea/
-.vscode/
 *.swp
 *.swo
 .DS_Store
@@ -31,3 +28,4 @@ build/
 logs/
 *.log
 tmp/
+config.bat

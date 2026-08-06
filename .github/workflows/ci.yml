@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     services:
       postgres:
         image: postgres:15-alpine
-        environment:
+        env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password123
           POSTGRES_DB: flashticket_db
